@@ -1,8 +1,9 @@
 import './App.css';
-import { getWeatherData } from './API/getWeatherData';
+import { getAllWeatherData } from './API/getWeatherData';
+import { locationData } from './assets/locationData';
 
 const App = () => {
-  getWeatherData();
+  getAllWeatherData(locationData);
 };
 
 export default App;

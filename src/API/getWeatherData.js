@@ -3,7 +3,7 @@ const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 const username = process.env.REACT_APP_USERNAME;
 const password = process.env.REACT_APP_PASSWORD;
 
-export const getWeatherData = async () => {
+export const getWeatherData = async (latNE, lonNE, latSW, lonSW) => {
   const fetchAuthData = async () => {
     const response = await fetch(
       `https://api.netatmo.com/oauth2/token`,
@@ -27,16 +27,16 @@ export const getWeatherData = async () => {
 
     if (!response.ok) throw new Error('cannot find access token');
 
-    console.log('response', response);
+    //console.log('response', response);
     const data = await response.json();
     const token = data['access_token'];
     return token;
   };
 
   const fetchWeatherData = async (token) => {
-    console.log('token inside', token);
+    //console.log('token inside', token);
     const response = await fetch(
-      'https://api.netatmo.net/api/getpublicdata?lat_ne=48.86471476180278&lon_ne=2.373046875&lat_sw=48.83579746243092&lon_sw=2.3291015625',
+      `https://api.netatmo.net/api/getpublicdata?lat_ne=${latNE}&lon_ne=${lonNE}&lat_sw=${latSW}&lon_sw=${lonSW}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -46,16 +46,33 @@ export const getWeatherData = async () => {
 
     if (!response.ok) throw new Error('cannot find weather data');
     const data = await response.json();
-    console.log('data for weather', data);
+    //console.log('data for weather', data);
     return data;
   };
 
   try {
     const token = await fetchAuthData();
     const result = await fetchWeatherData(token);
-    console.log('weather result', result);
+    //console.log('weather result', result);
     return result;
   } catch (error) {
     console.error(error);
   }
+};
+
+export const getAllWeatherData = (locationData) => {
+  Promise.all(
+    locationData.map(async (location) => {
+      //console.log(location);
+
+      const result = await getWeatherData(
+        location['lat_ne'],
+        location['lon_ne'],
+        location['lat_sw'],
+        location['lon_sw']
+      );
+      console.log('result', location.location, result);
+      return result;
+    })
+  );
 };
