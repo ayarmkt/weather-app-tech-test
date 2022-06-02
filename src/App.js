@@ -1,25 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import { getWeatherData } from './API/getWeatherData';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  getWeatherData();
+};
 
 export default App;
+
+//scope=read_station read_thermostat
