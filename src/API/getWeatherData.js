@@ -16,7 +16,7 @@ export const getWeatherData = async (latNE, lonNE, latSW, lonSW) => {
           client_secret: clientSecret,
           username: username,
           password: password,
-          //scope: 'read_station read_thermostat',
+          scope: 'read_station read_thermostat',
         }),
 
         headers: {
@@ -60,8 +60,8 @@ export const getWeatherData = async (latNE, lonNE, latSW, lonSW) => {
   }
 };
 
-export const getAllWeatherData = (locationData) => {
-  Promise.all(
+export const getAllWeatherData = async (locationData) => {
+  const results = await Promise.all(
     locationData.map(async (location) => {
       //console.log(location);
 
@@ -75,4 +75,5 @@ export const getAllWeatherData = (locationData) => {
       return result;
     })
   );
+  console.log('results', results);
 };
