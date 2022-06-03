@@ -41,8 +41,8 @@ const WeatherMeasureTabs = ({ value, setValue }) => {
           aria-label='basic tabs example'
         >
           <Tab label='Temperature' {...a11yProps(0)} />
-          <Tab label='Item Two' {...a11yProps(1)} />
-          <Tab label='Item Three' {...a11yProps(2)} />
+          <Tab label='Temperature' {...a11yProps(1)} />
+          <Tab label='Temperature' {...a11yProps(2)} />
         </Tabs>
       </Box>
       {/* <WeatherTable value={value} /> */}

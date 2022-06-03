@@ -19,7 +19,7 @@ const createData = (
   return { name, calories, fat, carbs, protein };
 };
 
-const WeatherTable = ({ value }) => {
+const WeatherTable = ({ value, weatherInfo }) => {
   //   const TabPanel = (
   //     { children, value, index, ...other } //: TabPanelProps
   //   ) => {
@@ -42,6 +42,8 @@ const WeatherTable = ({ value }) => {
   //     );
   //   };
 
+  console.log('data I want to use', weatherInfo);
+
   const rows = [
     //createData(locationData[0], 237, 9.0, 37, 4.3),
     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
@@ -57,7 +59,7 @@ const WeatherTable = ({ value }) => {
     //   },
   ];
 
-  console.log('rows', rows);
+  //console.log('rows', rows);
 
   return (
     <>
