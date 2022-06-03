@@ -63,6 +63,10 @@ export const getWeatherData = async (
     //   'for formatting',
     //   Object.entries(result.body[0].measures).map((arr) => arr[1]).map(obj => )
     // );
+    if (result.body.length === 0) {
+      await setWeatherInfo(null);
+      return result;
+    }
     await setWeatherInfo(formatBasicData(result));
     return result;
   } catch (error) {

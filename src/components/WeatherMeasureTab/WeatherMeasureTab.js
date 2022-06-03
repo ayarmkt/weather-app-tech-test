@@ -33,7 +33,7 @@ const WeatherMeasureTabs = ({ value, setValue, className }) => {
   };
 
   return (
-    <Box className={className} sx={{ width: '100%', pb: 3 }}>
+    <Box className={className} sx={{ width: '100%', mb: 5 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}

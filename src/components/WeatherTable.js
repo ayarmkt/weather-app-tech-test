@@ -25,31 +25,33 @@ const WeatherTable = ({ value, weatherInfo, className }) => {
 
   return (
     <>
-      {!weatherInfo && <p>Loading...</p>}
+      {/* {!weatherInfo && <p>Loading...</p>} */}
       {/* {weatherInfo && noWeatherInfo && <p>No results</p>} */}
-      {weatherInfo && ( //!noWeatherInfo &&
-        <TableContainer
-          className={className}
-          component={Paper}
-          value={value}
-          index={0}
-          // sx={{ maxWidth: 600 }}
+      <TableContainer
+        className={className}
+        component={Paper}
+        value={value}
+        index={0}
+        // sx={{ maxWidth: 600 }}
+      >
+        <Table //sx={{ maxWidth: 300 }}
+          aria-label='simple table'
         >
-          <Table //sx={{ maxWidth: 300 }}
-            aria-label='simple table'
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: 700 }}>City</TableCell>
-                {weatherMeasuresNames.map((name) => (
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ fontWeight: 700 }}>City</TableCell>
+              {weatherInfo !== null &&
+                weatherMeasuresNames.map((name) => (
                   <TableCell key={name} align='right' sx={{ fontWeight: 700 }}>
                     {name}
                   </TableCell>
                 ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {weatherInfo === null && <TableCell>No data.</TableCell>}
+            {weatherInfo !== null &&
+              rows.map((row) => (
                 <TableRow
                   key={Object.keys(row)}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -64,10 +66,9 @@ const WeatherTable = ({ value, weatherInfo, className }) => {
                   ))}
                 </TableRow>
               ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
+          </TableBody>
+        </Table>
+      </TableContainer>
       {/* </TabPanel> */}
       {/* <TabPanel value={value} index={1}>
         TABLE TWO
