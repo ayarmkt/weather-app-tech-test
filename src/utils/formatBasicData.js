@@ -1,12 +1,15 @@
+import { formatCityNames } from './formatCityNames';
+
 export const formatBasicData = (weatherData) => {
+  const city = formatCityNames(weatherData.body[0].place.timezone);
   const weatherMeasures = Object.entries(weatherData.body[0].measures).map(
     (arr) => arr[1]
   );
-  console.log('for formatting 1', weatherMeasures);
-  console.log(
-    'for formatting 2',
-    Object.values(weatherMeasures[1]['res'])[0][0]
-  );
+  // console.log('for formatting 1', weatherMeasures);
+  // console.log(
+  //   'for formatting 2',
+  //   Object.values(weatherMeasures[1]['res'])[0][0]
+  // );
 
   const basicData = {
     [weatherMeasures[0]['type'][0]]: Object.values(
@@ -19,7 +22,7 @@ export const formatBasicData = (weatherData) => {
       weatherMeasures[1]['res']
     )[0][0],
   };
-  console.log('basicData', basicData);
+  console.log('basicData', { [city]: basicData });
   //return weatherData;
-  return basicData;
+  return { [city]: basicData };
 };

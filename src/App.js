@@ -32,7 +32,10 @@ const App = () => {
     ...Object.keys(locationData[value])
   );
   const [selectedCityIndex, setSelectedCityIndex] = useState(0);
-  const [weatherInfo, setWeatherInfo] = useState();
+  //Change later
+  const [weatherInfo, setWeatherInfo] = useState({
+    Paris: { temperature: 25, humidity: 59, pressure: 1018 },
+  });
 
   useEffect(() => {
     const getData = async () => {
