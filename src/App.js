@@ -94,17 +94,28 @@ const App = () => {
   // }, [value, selectedCity]);
 
   return (
-    <>
+    <div className='container'>
       <h1>Widget Weathermap</h1>
-      <WeatherMeasureTabs value={value} setValue={setValue} />
-      <WeatherTable value={value} weatherInfo={weatherInfo} />
-      <CityButtons
-        locationData={locationData}
-        selectedCity={selectedCity}
-        setSelectedCity={setSelectedCity}
-        setSelectedCityIndex={setSelectedCityIndex}
-      />
-    </>
+      <div className='content-container'>
+        <WeatherMeasureTabs
+          value={value}
+          setValue={setValue}
+          className='tabs'
+        />
+        <WeatherTable
+          value={value}
+          weatherInfo={weatherInfo}
+          className='table'
+        />
+        <CityButtons
+          className='buttons'
+          locationData={locationData}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
+          setSelectedCityIndex={setSelectedCityIndex}
+        />
+      </div>
+    </div>
   );
 };
 

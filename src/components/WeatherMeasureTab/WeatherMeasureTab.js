@@ -22,7 +22,7 @@ const a11yProps = (
   };
 };
 
-const WeatherMeasureTabs = ({ value, setValue }) => {
+const WeatherMeasureTabs = ({ value, setValue, className }) => {
   //const [value, setValue] = useState(0);
 
   const handleChange = (
@@ -33,7 +33,7 @@ const WeatherMeasureTabs = ({ value, setValue }) => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box className={className} sx={{ width: '100%', mb: 5 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}

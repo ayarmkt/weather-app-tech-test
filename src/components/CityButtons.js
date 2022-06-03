@@ -8,6 +8,7 @@ const CityButtons = ({
   selectedCity,
   setSelectedCity,
   setSelectedCityIndex,
+  className,
 }) => {
   //const [selectedCity, setSelectedCity] = useState('Paris');
 
@@ -42,6 +43,7 @@ const CityButtons = ({
 
   return (
     <Box
+      className={className}
       sx={{
         display: 'flex',
         '& > *': {
