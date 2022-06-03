@@ -7,7 +7,7 @@ export const locationData = [
     lon_sw: 2.3291015625,
   },
   {
-    location: 'NewYork',
+    location: 'New York',
     lat_ne: 40.97989806962013,
     lat_sw: 38.82259097617712,
     lon_ne: -81.5625,
