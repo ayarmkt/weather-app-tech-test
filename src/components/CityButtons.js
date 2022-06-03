@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
@@ -10,20 +10,13 @@ const CityButtons = ({
   setSelectedCityIndex,
   className,
 }) => {
-  //const [selectedCity, setSelectedCity] = useState('Paris');
-
   const handleClick = (e) => {
     setSelectedCity(e.target.textContent);
     const locationsNameArray = locationData
       .map((location) => Object.keys(location))
       .map(([locationName]) => locationName);
     const selectedCityIndex = locationsNameArray.indexOf(e.target.textContent);
-    // console.log(
-    //   locationData
-    //     .map((location) => Object.keys(location))
-    //     .map(([locationName]) => locationName)
-    //     .indexOf(e.target.textContent)
-    // );
+
     setSelectedCityIndex(selectedCityIndex);
   };
 

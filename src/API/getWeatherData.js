@@ -32,14 +32,12 @@ export const getWeatherData = async (
 
     if (!response.ok) throw new Error('cannot find access token');
 
-    //console.log('response', response);
     const data = await response.json();
     const token = data['access_token'];
     return token;
   };
 
   const fetchWeatherData = async (token) => {
-    //console.log('token inside', token);
     const response = await fetch(
       `https://api.netatmo.net/api/getpublicdata?lat_ne=${lat_ne}&lon_ne=${lon_ne}&lat_sw=${lat_sw}&lon_sw=${lon_sw}`,
       {
@@ -51,18 +49,13 @@ export const getWeatherData = async (
 
     if (!response.ok) throw new Error('cannot find weather data');
     const data = await response.json();
-    //console.log('data for weather', data);
     return data;
   };
 
   try {
     const token = await fetchAuthData();
     const result = await fetchWeatherData(token);
-    console.log('weather result inside getWeatherData', result);
-    // console.log(
-    //   'for formatting',
-    //   Object.entries(result.body[0].measures).map((arr) => arr[1]).map(obj => )
-    // );
+
     if (result.body.length === 0) {
       await setWeatherInfo(null);
       return result;
@@ -73,44 +66,3 @@ export const getWeatherData = async (
     console.error(error);
   }
 };
-
-// export const getAllWeatherData = async (locationData) => {
-//   const results = await Promise.all(
-//     locationData.map(async (location) => {
-//       //console.log(location);
-
-//       const result = await getWeatherData(
-//         location['lat_ne'],
-//         location['lon_ne'],
-//         location['lat_sw'],
-//         location['lon_sw']
-//       );
-//       console.log('result', location.location, result);
-//       return result;
-//     })
-//   );
-//   console.log('results', results);
-// };
-
-// export const getOneWeatherData = (locationData) => {
-//   // const result = getWeatherData(locationData);
-//   // //console.log('result just Paris', Object.entries(result.body[0].measures)[0]);
-//   // return result;
-// };
-
-// export const getOneWeatherData = async (locationData, setWeatherInfo) => {
-//   const getResult = async () => {
-//     const result = await getWeatherData(locationData);
-//     //console.log('result just one', result);
-//     return result;
-//   };
-
-//   try {
-//     const result = await getResult();
-//     setWeatherInfo(result);
-//     //console.log('final result', result);
-//     return result;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
