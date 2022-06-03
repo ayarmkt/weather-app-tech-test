@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { locationData } from '../assets/locationData';
 
-const WeatherTable = ({ value, weatherInfo }) => {
+const WeatherTable = ({ value, weatherInfo, className }) => {
   console.log('data I want to use', weatherInfo);
   let basicData;
   let weatherMeasuresNames;
@@ -28,13 +28,21 @@ const WeatherTable = ({ value, weatherInfo }) => {
       {!weatherInfo && <p>Loading...</p>}
       {/* {weatherInfo && noWeatherInfo && <p>No results</p>} */}
       {weatherInfo && ( //!noWeatherInfo &&
-        <TableContainer component={Paper} value={value} index={0}>
-          <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+        <TableContainer
+          className={className}
+          component={Paper}
+          value={value}
+          index={0}
+          // sx={{ maxWidth: 600 }}
+        >
+          <Table //sx={{ maxWidth: 300 }}
+            aria-label='simple table'
+          >
             <TableHead>
               <TableRow>
-                <TableCell>City</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>City</TableCell>
                 {weatherMeasuresNames.map((name) => (
-                  <TableCell key={name} align='right'>
+                  <TableCell key={name} align='right' sx={{ fontWeight: 700 }}>
                     {name}
                   </TableCell>
                 ))}
@@ -50,7 +58,9 @@ const WeatherTable = ({ value, weatherInfo }) => {
                     {Object.keys(row)}
                   </TableCell>
                   {weatherMeasuresNames.map((name) => (
-                    <TableCell align='right'>{basicData[name]}</TableCell>
+                    <TableCell key={name} align='right'>
+                      {basicData[name]}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))}
